@@ -1,0 +1,85 @@
+
+
+
+<section>
+    <img src="https://itshowcasecontent.blob.core.windows.net/careers/professionals-hero-img.jpg" style="width:100%;"/>
+    <div class="container loginbox">
+  <h2>Welcome back</h2>
+  <form>
+    <div class="form-group">
+      <label for="usr">User Name</label>
+      <input ng-model="username" type="text" class="form-control" id="usr">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password</label>
+      <input ng-model="password" type="password" class="form-control" id="pwd">
+    </div>
+    <div class="form-group">
+        <label class="checkbox-inline"><input type="checkbox" value="">Remember me</label>
+    </div>
+    <button type="button" class="btn btn-primary btn-block" ng-click="signin()">Sign in</button>
+  </form>
+  <div>
+      <span class="signinaddinfo">Forgot username/password? ></spanp>
+      <span class="signinaddinfo" data-toggle="modal" data-target="#myModal">Not enroller? Sign up now ></span>
+  </div>
+ 
+</div>
+ <section class="row">
+      <h1 class="middle">How it works?</h1>
+      <div class="col-sm-6 middle">
+          It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed
+      </div>
+      <div class="col-sm-6 middle">
+          It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed
+      </div>
+  </section>
+</section>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Client Registration</h4>
+                </div>
+                <div class="modal-body">
+                 <form>
+                    <div class="form-group">
+                       <label>Do your company has account with Amex? <input type="radio" name="optradio"> Yes <input type="radio" name="optradio"> No</label>
+                    </div>
+                    <div class="form-group">
+                       <input type="text" class="form-control" ng-model="companyname">
+                    </div>
+                    <div class="form-group">
+                       <input type="text" class="form-control" ng-model="address1">
+                    </div>
+                    <div class="form-group">
+                       <input type="text" class="form-control" ng-model="address2">
+                    </div>
+                    <div class="form-group">
+                       <input type="text" class="form-control state" ng-model="city"> <input type="text" class="form-control state" ng-model="state"> <input type="text" class="form-control state" ng-model="zip">
+                    </div>
+                     <div class="form-group">
+                       <input type="text" class="form-control email" ng-model="email"> <input type="text" class="form-control email" ng-model="phone"> 
+                    </div>
+                     <div class="form-group">
+                       <input type="text" class="form-control email" ng-model="annrev"> <input type="text" class="form-control email" ng-model="erp">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary btn-block" data-dismiss="modal" ng-click="submit()">Submit</button>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+                </form>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
