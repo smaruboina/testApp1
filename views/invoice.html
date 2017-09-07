@@ -1,0 +1,283 @@
+<div>
+    <nav class="navbar navbar-default" style="background-color: #e5e5e5">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="btn btn-primary btn-md" style=" position absolute;left 24px; top 11px;"><i class="glyphicon glyphicon-menu-hamburger"></i> Menu</button>
+                <h3 style="padding-left: 760px;color: #337ab7;font-weight: 600;">AMERICAN EXPRESS</h3>
+                <span class="glyphicon glyphicon-search" style=" position absolute;right:236px; top 20px; color:#337ab7"></span>
+                <span style=" position absolute;right:150px; top 16px; color:#337ab7 ;font-weight 500; font-size 17px;">Help</span>
+                <button type="button" class="btn btn-default" style=" position absolute;right:30px; top 11px;" ng-click="logout()">Log Out</button>
+            </div>
+            <ul class="nav navbar-nav">
+
+                <!--<li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Page 1</a></li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>-->
+            </ul>
+        </div>
+    </nav>
+
+    <h2 style="padding-left: 15px;">{{company}}</h2>
+    <nav class="navbar navbar-default">
+        <div class="row">
+            <div class="col-sm-4" style="position:relative; bottom:-13px"><label style="padding-left: 40px; color: grey;">Your Account Summary</label></div>
+            <div class="col-sm-2 aligncenter" style="position:relative; bottom:-8px; left:-70px"><button type="button" class="btn btn-primary btn-md" ng-click="tabclick('accounts')">Accounts</button></div>
+            <div class="col-sm-2 aligncenter" style="position:relative; bottom:-8px; left:-70px"><button type="button" class="btn btn-primary btn-md" ng-click="tabclick('suppliers')">Suppliers</button></div>
+            <div class="col-sm-2 aligncenter" style="position:relative; bottom:-8px; left:-70px"><button type="button" class="btn btn-primary btn-md" ng-click="tabclick('invoice')">Invoice</button></div>
+            <div class="col-sm-2 aligncenter" style="position:relative; bottom:-8px; left:-70px"><button type="button" class="btn btn-primary btn-md" ng-click="tabclick('statements')">Statements</button></div>
+        </div>
+    </nav>
+    <section class="defaultblock">
+        <section class="row" style="padding-top: 25px;">
+            <div ng-repeat="(key,value) in invoicedetails" class="col-sm-3 accountdetail">
+                <h3 style="color: grey">{{key}}</h3>
+                <span style="font-size: 24px;">{{value}}</span>
+            </div>
+        </section>
+        <section class="row">
+            <div class="col-sm-6 fileitem">
+                <p class="filetxt">
+                    Based on your preference, best payment option has been recommended for your invoices.
+                </p>
+                <p class="filetxt">You can make changes to the payment options if you would like to make changes </p>
+            </div>
+            <div class="col-sm-6 fileitem">
+                <div class="form-group">
+                    <input type="file" name="img[]" class="file">
+                    <div class="input-group col-xs-11">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+                        <input type="text" class="form-control input-lg" disabled placeholder="Upload your new invoice">
+                        <span class="input-group-btn">
+                            <button class="browse btn btn-primary input-lg" type="button" style="background-color: grey"><i class="glyphicon glyphicon-search"></i> Browse</button>
+                        </span>
+
+                    </div>
+                </div>
+                <div class="input-group col-xs-11">
+                    <button type="button" class="btn btn-primary floatright" ng-click="upload()"><i class="glyphicon glyphicon-upload"></i> Upload</button>
+                </div>
+            </div>
+        </section>
+        <section class="row">
+            <div class="col-sm-4" style="padding-left: 43px">
+                <div class="dropdown">
+                    <button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="dropdown">
+                        Recent Activity
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu btn-block">
+                        <li><a href="#">Card</a></li>
+                        <li><a href="#">ACH</a></li>
+                        <li><a href="#">Lending</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <div class="iconbutton"><button class="btn"><i class="glyphicon glyphicon-signal"></i></button></div>
+            <div class="iconbutton"><button class="btn"><i class="glyphicon glyphicon-tag"></i></button></div>
+            <div class="iconbutton"><button class="btn"><i class="glyphicon glyphicon-download"></i></button></div>
+            <div class="iconbutton"><button class="btn"><i class="glyphicon glyphicon-print"></i></button></div>
+        </section>
+        <section class="row">
+            <table>
+                <tr>
+                    <th>Invoice no</th>
+                    <th>Date of invoice</th>
+                    <th>Due Date</th>
+                    <th>Supplier Name</th>
+                    <th>Amount</th>
+                    <th>Payment option</th>
+                    <th>Status</th>
+
+                </tr>
+                <tr ng-repeat="item in tabdata">
+                    <td>{{item.invoiceno}}</td>
+                    <td>{{item.dateofinv}}</td>
+                    <td>{{item.duedate}}</td>
+                    <td>{{item.supname}}</td>
+                    <td>{{item.amount}}</td>
+                    <td>{{item.paymentoption}}</td>
+                    <td>{{item.status}}</td>
+                </tr>
+            </table></section>
+    </section>
+
+    <section class="accounts row maintabs">
+        <div class="col-sm-4 menuitems">
+            <p class="menuitem">Personal Details</p>
+            <p class="menuitem">Inquiry & Dispute Center</p>
+            <p class="menuitem">Alerts Communications & Privacy</p>
+            <p class="menuitem">Payment Options</p>
+        </div>
+        <div class="col-sm-8">
+            <div class="innermenu row">
+                <h2>Payment Options</h2>
+                <p ng-click="innertabclick('managebank')">Add or manage Bank Accounts</p>
+                <p ng-click="innertabclick('manageaccount')">Add or manage Card Accounts</p>
+                <p ng-click="innertabclick('lendingeli')">Lending Eligibility?</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div>XXXXX XXXXXXXXXXXXXX XXXX</div>
+                    <textarea class="textar" ng-model="textarea1"></textarea>
+                    <div>
+                        <div class="textarbtn">
+                            <button class="btn"><i class="glyphicon glyphicon-edit"></i></button>
+                            <button class="btn" ng-click="textarea1clear()"><i class="glyphicon glyphicon-remove"></i></button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div>XXXXX XXXXXXXXXXXXXX XXXX</div>
+                    <textarea class="textar" ng-model="textarea2"></textarea>
+                    <div>
+                        <div class="textarbtn">
+                            <button class="btn"><i class="glyphicon glyphicon-edit"></i></button>
+                            <button class="btn" ng-click="textarea2clear()"><i class="glyphicon glyphicon-remove"></i></button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lendingeli innertabitems">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <h1>Lending eligibilty?</h1>
+                    <p>
+                        X XX XXXXXXXXXX X XXXXXXXXXXX
+                        X XX XXXXXXXXXX X XXXXXXXXXXX
+                        X XX XXXXXX
+                    </p>
+                    <p>XXXXXXXXXXXXXXX X X </p>
+                    <button type="button" class="btn btn-primary" style="float:right;">Apply</button>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+            <div class="managebank innertabitems">
+                <h4>XXX X XXXXXXXXXXXXXX X XX X XXXXXXXXX XX</h4>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <div class="dropdown">
+                                <button class="btn btn-block dropdown-toggle" type="button" data-toggle="dropdown">
+                                    Recent Activity
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu btn-block">
+                                    <li><a href="#">Card</a></li>
+                                    <li><a href="#">ACH</a></li>
+                                    <li><a href="#">Lending</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+            <div class="manageaccount innertabitems">
+                <h4>XXX X XXXXXXXXXXXXXX X XX X XXXXXXXXX XX</h4>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+        </div>
+
+    </section>
+    <section class="suppliers maintabs">
+         <div class="col-sm-2"></div>
+          <div class="col-sm-10">
+        <form>
+                    
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="companyname">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="address1">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="address2">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control state" ng-model="city"> <input type="text" class="form-control state" ng-model="state"> <input type="text" class="form-control state" ng-model="zip">
+            </div>
+                <div class="form-group">
+                <input type="text" class="form-control email" ng-model="email"> <input type="text" class="form-control email" ng-model="phone"> 
+            </div>
+                <div class="form-group">
+                <input type="text" class="form-control email" ng-model="annrev"> <input type="text" class="form-control email" ng-model="erp">
+            </div>
+                    
+        </form>
+        </div>
+        <div class="col-sm-2"></div>
+    </section>
+    <section class="invoice maintabs">
+         <table>
+                <tr>
+                    <th>Invoice no</th>
+                    <th>Date of invoice</th>
+                    <th>Due Date</th>
+                    <th>Supplier Name</th>
+                    <th>Amount</th>
+                    <th>Payment option</th>
+                    <th>Status</th>
+                    <th><button type="button" class="btn">All</button></th>
+
+                </tr>
+                <tr ng-repeat="item in invoicedata">
+                    <td>{{item.invoiceno}}</td>
+                    <td>{{item.dateofinv}}</td>
+                    <td>{{item.duedate}}</td>
+                    <td>{{item.supname}}</td>
+                    <td>{{item.amount}}</td>
+                    <td>{{item.paymentoption}}</td>
+                    <td>{{item.status}}</td>
+                    <td><button type="button" class="btn">Pay</button></td>
+                </tr>
+            </table>
+    </section>
+    <section class="statements maintabs">
+        <img src="https://itshowcasecontent.blob.core.windows.net/careers/professionals-hero-img.jpg" style="width:100%;">
+    </section>
+</div>
